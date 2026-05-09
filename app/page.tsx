@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Mail, Camera, ArrowDown, ChevronLeft, ChevronRight, X, Instagram, RefreshCw, ExternalLink } from 'lucide-react';
+import { Mail, Camera, ArrowDown, ChevronLeft, ChevronRight, X, RefreshCw, ExternalLink } from 'lucide-react';
 
 const portfolioImages = [
   { title: "Urban Exploration", category: "Street", image: "https://images.unsplash.com/photo-1449824913935-59597967a563?auto=format&fit=crop&q=80&w=800", aspect: "tall" },
