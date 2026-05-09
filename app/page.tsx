@@ -213,29 +213,29 @@ export default function Page() {
             </button>
           </div>
 
-          {/* Cool Gallery */}
+          {/* Floating Polaroid Gallery */}
           <div className="gallery-grid">
             {shuffled.slice(0, 15).map((img, i) => (
               <div
                 key={`${img.url}-${i}`}
-                className={`gallery-item`}
+                className="gallery-item"
                 onClick={() => openLightbox(i)}
               >
-                <div className="image-wrapper">
-                  <Image
-                    src={getImageUrl(img.url)}
-                    alt={img.caption || `Photo ${i + 1}`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className={`object-cover transition-transform duration-500 ${
-                      loadedImages.has(i) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    onLoad={() => handleImageLoad(i)}
-                  />
-                  {!loadedImages.has(i) && (
-                    <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
-                  )}
-                  <div className="hover-overlay" />
+                <div className="polaroid">
+                  <div className="image-wrapper">
+                    <Image
+                      src={getImageUrl(img.url)}
+                      alt={img.caption || `Photo ${i + 1}`}
+                      fill
+                      sizes="300px"
+                      className="object-cover"
+                      onLoad={() => handleImageLoad(i)}
+                    />
+                    {!loadedImages.has(i) && (
+                      <div className="loading-skeleton" />
+                    )}
+                  </div>
+                  <div className="caption">{img.caption?.slice(0, 30) || ''}</div>
                 </div>
               </div>
             ))}
