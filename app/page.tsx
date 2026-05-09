@@ -136,6 +136,11 @@ export default function Page() {
     setShuffled([...imagePosts].sort(() => Math.random() - 0.5));
   };
 
+  const getImageUrl = (url: string) => {
+    const encoded = encodeURIComponent(url);
+    return `/api/images/proxy?url=${encoded}`;
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden">
       <div className="grain-overlay" />
@@ -216,12 +221,12 @@ export default function Page() {
             {shuffled.slice(0, 15).map((img, i) => (
               <div
                 key={`${img.url}-${i}`}
-                className={`gallery-item gallery-item-${i + 1} group`}
+                className={`gallery-item group`}
                 onClick={() => openLightbox(i)}
               >
                 <div className="relative w-full h-full overflow-hidden rounded-lg">
                   <Image
-                    src={img.url}
+                    src={getImageUrl(img.url)}
                     alt={img.caption || `Photo ${i + 1}`}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -271,7 +276,7 @@ export default function Page() {
                 >
                   <div className="relative aspect-square">
                     <Image
-                      src={img.url}
+                      src={getImageUrl(img.url)}
                       alt={img.caption || 'Photo'}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -351,7 +356,7 @@ export default function Page() {
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={shuffled[selectedIndex].url}
+              src={getImageUrl(shuffled[selectedIndex].url)}
               alt={shuffled[selectedIndex].caption || 'Photo'}
               fill
               sizes="100vw"
