@@ -136,10 +136,7 @@ export default function Page() {
     setShuffled([...imagePosts].sort(() => Math.random() - 0.5));
   };
 
-  const getImageUrl = (url: string) => {
-    const encoded = encodeURIComponent(url);
-    return `/api/images/proxy?url=${encoded}`;
-  };
+  const getImageUrl = (url: string) => url;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden">

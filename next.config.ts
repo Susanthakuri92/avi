@@ -5,12 +5,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
-    ],
-    localPatterns: [
-      {
-        pathname: "/api/images/proxy",
-        search: "**",
-      },
+      { protocol: "https", hostname: "*.cdninstagram.com" },
+      { protocol: "https", hostname: "scontent*.cdninstagram.com" },
     ],
   },
   compiler: { removeConsole: true },
