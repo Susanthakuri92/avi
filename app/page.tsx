@@ -213,21 +213,21 @@ export default function Page() {
             </button>
           </div>
 
-          {/* Masonry Gallery */}
+          {/* Cool Gallery */}
           <div className="gallery-grid">
             {shuffled.slice(0, 15).map((img, i) => (
               <div
                 key={`${img.url}-${i}`}
-                className={`gallery-item group`}
+                className={`gallery-item`}
                 onClick={() => openLightbox(i)}
               >
-                <div className="relative w-full h-full overflow-hidden rounded-lg">
+                <div className="image-wrapper">
                   <Image
                     src={getImageUrl(img.url)}
                     alt={img.caption || `Photo ${i + 1}`}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
+                    className={`object-cover transition-transform duration-500 ${
                       loadedImages.has(i) ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => handleImageLoad(i)}
@@ -235,6 +235,7 @@ export default function Page() {
                   {!loadedImages.has(i) && (
                     <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
                   )}
+                  <div className="hover-overlay" />
                 </div>
               </div>
             ))}
